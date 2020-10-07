@@ -4,8 +4,10 @@
   "description": "",
   "main": "index.ts",
   "scripts": {
-    "start": "nodemon index.ts",
-   "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon ./index.ts",
+    "prod:start": "node ./build/index.js",
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
