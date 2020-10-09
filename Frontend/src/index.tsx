@@ -1,9 +1,5 @@
 import React from 'react';
 import { render } from 'react-dom';
-import './assets/index.scss';
+import App from './common/App';
 
-const Application: React.FunctionComponent<any> = () => (
-    <h1>Application</h1>
-);
-
-render(<Application />, document.getElementById('root'));
+render(<App />, document.getElementById('root'));
