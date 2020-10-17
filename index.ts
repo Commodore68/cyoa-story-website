@@ -2,7 +2,7 @@ import express from 'express';
 import { connect } from "./backend/database/database";
 
 const app = express();
-const PORT = 8082;
+const PORT = 8050;
 
 connect();
 
