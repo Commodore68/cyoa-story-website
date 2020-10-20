@@ -5,3 +5,28 @@
   top: 0;
   width: 100%;
 }
+
+#login-box {
+  display:flex;
+  border: solid black;
+  height: 100%;
+  width: 100%;
+  margin: 25px;
+  padding:3px;
+  box-shadow:5px;
+  background-color: azure;
+}
+
+#login-form{ 
+  justify-content: space-evenly; 
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  width:50%;
+  height: 50%;
+  margin-top: 5pxpx;
+  margin-left: 25%;
+  padding: 5px;
+  border: solid rgb(245, 6, 6);
+}
+

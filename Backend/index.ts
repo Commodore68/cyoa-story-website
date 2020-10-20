@@ -1,5 +1,5 @@
 import express from 'express';
-import { connect } from "./backend/database/database";
+import { connect } from "./database/database";
 
 const app = express();
 const PORT = 8050;
