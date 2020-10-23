@@ -1,5 +1,6 @@
 module.exports = {
     env: {
+        node: true,
         browser: true,
         es6: true
     },
@@ -34,8 +35,12 @@ module.exports = {
         'react-hooks',
         '@typescript-eslint',
         'jsdoc',
+        'import',
     ],
     settings: {
+        'import/resolver': {
+            typescript: {}
+        },
         react: { version: 'detect' }
     },
     rules: {
