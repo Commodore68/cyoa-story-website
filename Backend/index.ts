@@ -1,10 +1,10 @@
 import express from 'express';
 import { connect } from "./database/database";
-import { userRouter } from './Frontend/src/routes/users';
+import { userRouter } from './apiAdapter/src/routes/users';
 import {json} from 'body-parser'
 
 const app = express();
-const PORT = 8050;
+const PORT = 8052;
 
 connect();
 
