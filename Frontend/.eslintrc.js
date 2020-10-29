@@ -52,5 +52,13 @@ module.exports = {
             'error',
             'always'
         ]
-    }
+    },
+    overrides: [
+        {
+            files: ["*.test.*"],
+            rules: {
+                "react/jsx-key": "off"
+            }
+        }
+    ]
 }
