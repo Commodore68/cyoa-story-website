@@ -9,7 +9,7 @@ export interface MongoCRUDParams {
 }
 
 //todo: figure out the types we need to return other than void
-type MongoCRUDFunction = (db: Db, otherArgs: MongoCRUDParams) => void | Object
+type MongoCRUDFunction = (db: Db, otherArgs: MongoCRUDParams) => void | Array<Object>
 
 export interface MongoConnectionParams {
     callback: MongoCRUDFunction,
