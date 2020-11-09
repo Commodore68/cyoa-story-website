@@ -12,13 +12,13 @@ export interface MongoCRUDParams {
 type MongoCRUDFunction = (db: Db, otherArgs: MongoCRUDParams) => void | Array<Object>
 
 export interface MongoConnectionParams {
-    callback: MongoCRUDFunction,
+    CRUDFunction: MongoCRUDFunction,
     params: MongoCRUDParams
 }
 
 //todo: look into creating indexes
 export function mongoConnectWrapper(args: MongoConnectionParams) {
-    const {callback, params} = args;
+    const {CRUDFunction, params} = args;
 
     let result = null;
 
@@ -29,7 +29,7 @@ export function mongoConnectWrapper(args: MongoConnectionParams) {
 
         const db = client.db();
 
-        result = callback(db, params);
+        result = CRUDFunction(db, params);
 
         client.close((error) => {
             console.log(`An error occurred closing the client: ${error}`);
