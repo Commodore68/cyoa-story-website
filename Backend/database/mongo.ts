@@ -1,4 +1,4 @@
-import {Db, MongoClient} from "mongodb";
+import {Db, FindAndModifyWriteOpResultObject,  MongoClient, MongoError} from "mongodb";
 
 const uri: string = (process.env.DB_URL as string)
 
@@ -52,6 +52,41 @@ export const insertOneWrapper: MongoCRUDFunction = (db, otherArgs) => {
             console.log(`Insert Completed successfully: ${res.result.ok}`);
         } else {
             console.log(`An error occurred: ${error}`);
+        }
+    });
+}
+export const deleteOneWrapper: MongoCRUDFunction = (db : Db, otherArgs) => {
+    const {collection, data} = otherArgs;
+
+
+    db.collection(collection).deleteOne(data, (error, res)=> {
+       if(!error) {
+           console.log(`Delete completed successfully: ${res.result.ok}`)
+        } else {
+           console.log(`an error occurred: ${error}`)
+       }
+    });
+}
+
+export const updateOneWrapper: MongoCRUDFunction = (db, otherArgs ) => {
+    const {collection, data} = otherArgs;
+
+
+    db.collection(collection).findOneAndUpdate(data, (_id: any, error: MongoError, res:  FindAndModifyWriteOpResultObject<any>) => {
+        if (!error) {
+            console.log(`update was successful for: ${res.value}`)
+        }
+    }).then(r=>{return console.log(data)});
+}
+export const fienOneWrapper: MongoCRUDFunction=(db,otherArgs) => {
+    const {collection, data} = otherArgs;
+
+    db.collection(collection).findOne(data,(error: MongoError, res)=>{
+        if (!error){
+            console.log(`you've found ${res.value.ok}`)
+        }
+        else{
+            console.log(`error: ${error}`)
         }
     });
 }
