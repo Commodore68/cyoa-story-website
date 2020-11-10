@@ -2,7 +2,7 @@ import {Db, MongoClient} from "mongodb";
 
 const uri: string = (process.env.DB_URL as string)
 
-///todo: this will need to be updated with more objects and/or types as we know what to pass to it
+//todo: this will need to be updated with more objects and/or types as we know what to pass to it
 export interface MongoSingleCRUDParams {
     collection: string,
     data: { [key: string]: any }
