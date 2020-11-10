@@ -1,6 +1,6 @@
-import mongoose from 'mongoose';
 
-interface Author extends mongoose.Document {
+
+interface Author {
     id: string,
     isAdmin: boolean,
     firstName: string,
@@ -10,6 +10,7 @@ interface Author extends mongoose.Document {
     chapterBookmarks: string[],
     createdStories: string[],
     createdChapters: string[],
+    dateJoined: Date,
 }
 
 export {Author};

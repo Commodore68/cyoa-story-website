@@ -1,8 +1,10 @@
-import mongoose from 'mongoose';
 
-interface Story extends mongoose.Document {
+
+interface Story {
     id: string,
     authorId: string,
+    dateUpdated: Date,
+    dateCreated: Date,
     title: string,
     summary: string,
     tags: string[],

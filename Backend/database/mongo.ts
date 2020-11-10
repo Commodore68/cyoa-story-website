@@ -3,17 +3,22 @@ import {Db, MongoClient} from "mongodb";
 const uri: string = (process.env.DB_URL as string)
 
 //todo: this will need to be updated with more objects and/or types as we know what to pass to it
-export interface MongoCRUDParams {
+export interface MongoSingleCRUDParams {
     collection: string,
-    data: { [key: string]: any }[] | { [key: string]: any }
+    data: { [key: string]: any }
+}
+
+export interface MongoManyCRUDParams {
+    collection: string,
+    data: { [key: string]: any }[]
 }
 
 //todo: figure out the types we need to return other than void
-type MongoCRUDFunction = (db: Db, otherArgs: MongoCRUDParams) => void | Array<Object>
+type MongoCRUDFunction = (db: Db, otherArgs: MongoSingleCRUDParams | MongoManyCRUDParams) => void | Array<Object>
 
 export interface MongoConnectionParams {
     CRUDFunction: MongoCRUDFunction,
-    params: MongoCRUDParams
+    params: MongoSingleCRUDParams | MongoManyCRUDParams
 }
 
 //todo: look into creating indexes

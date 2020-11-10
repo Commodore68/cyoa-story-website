@@ -1,6 +1,6 @@
-import mongoose from 'mongoose';
 
-interface Chapter extends mongoose.Document {
+
+interface Chapter {
     id: string,
     authorId: string,
     storyId: string,
@@ -10,6 +10,8 @@ interface Chapter extends mongoose.Document {
     previousQuestion: string, // the question from the previous node
     nextQuestion: string, // the question from the end of the current
     children: string[],
+    dateUpdated: Date,
+    dateCreated: Date,
 }
 
 export {Chapter};
