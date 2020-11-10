@@ -2,9 +2,11 @@ import express from 'express';
 import { connect } from "./database/database";
 import { userRouter } from './apiAdapter/users';
 import {json} from 'body-parser'
+import {AddressInfo} from 'net';
+
+require('dotenv').config();
 
 const app = express();
-const PORT = 8055;
 
 connect();
 
@@ -12,8 +14,6 @@ app.use(json())
 
 app.use(userRouter)
 
-app.listen(PORT, () => {
-  
-  console.log(`⚡️[server]: Server is running at http://localhost:${PORT}, thank you very much`);
-
+const server = app.listen(process.env.PORT || 3000, () => {
+  console.log(`⚡️[server]: Server is running at http://localhost:${(server.address() as AddressInfo).port}`);
 });
