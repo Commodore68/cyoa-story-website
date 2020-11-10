@@ -1,4 +1,4 @@
-import {Db, FindAndModifyWriteOpResultObject, FindOneAndUpdateOption, MongoClient, MongoError} from "mongodb";
+import {Db, FindAndModifyWriteOpResultObject,  MongoClient, MongoError} from "mongodb";
 
 const uri: string = (process.env.DB_URL as string)
 
