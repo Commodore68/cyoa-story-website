@@ -1,6 +1,7 @@
 import React from 'react';
 import {Switch, Route} from "react-router-dom";
 import MyToolbar from './common/MainToolbar';
+import {HomePage} from './pages/home/HomePage';
 import './assets/index.scss';
 import 'primereact/resources/themes/saga-blue/theme.css';
 import 'primereact/resources/primereact.min.css';
@@ -19,9 +20,9 @@ const SomeOtherPage: React.FunctionComponent = () => (
     <h2>Some Other Page</h2>
 );
 
-const Home = () => (
-    <h1>Home</h1>
-);
+// const Home = () => (
+//     <h1>Home</h1>
+// );
 
 //this will end up being unnecessary
 const Login = () => (
@@ -52,10 +53,10 @@ const App: React.FunctionComponent = () => {
             <MyToolbar />
             <Switch>
                 <Route exact path="/" >
-                    <Home />
+                    <HomePage />
                 </Route>
                 <Route path="/home" >
-                    <Home />
+                    <HomePage />
                 </Route>
                 <Route path="/some-other-page">
                     <SomeOtherPage />

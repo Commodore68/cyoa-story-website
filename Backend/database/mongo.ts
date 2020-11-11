@@ -1,20 +1,20 @@
-import {Db, FindAndModifyWriteOpResultObject,  MongoClient, MongoError} from "mongodb";
-
-const uri: string = (process.env.DB_URL as string)
+import {Db, FilterQuery, MongoClient} from "mongodb";
 
 //todo: this will need to be updated with more objects and/or types as we know what to pass to it
 export interface MongoSingleCRUDParams {
     collection: string,
-    data: { [key: string]: any }
+    data: { [key: string]: any },
+    filter: FilterQuery<any> //if no filter values are needed this can be {}
 }
 
 export interface MongoManyCRUDParams {
     collection: string,
-    data: { [key: string]: any }[]
+    data: { [key: string]: any }[],
+    filter: FilterQuery<any> //if no filter values are needed this can be {}
 }
 
 //todo: figure out the types we need to return other than void
-type MongoCRUDFunction = (db: Db, otherArgs: MongoSingleCRUDParams | MongoManyCRUDParams) => void | Array<Object>
+export type MongoCRUDFunction = (db: Db, otherArgs: MongoSingleCRUDParams | MongoManyCRUDParams) => Promise<void | Array<Object>>
 
 export interface MongoConnectionParams {
     CRUDFunction: MongoCRUDFunction,
@@ -22,71 +22,69 @@ export interface MongoConnectionParams {
 }
 
 //todo: look into creating indexes
-export function mongoConnectWrapper(args: MongoConnectionParams) {
+export async function mongoConnectWrapper(args: MongoConnectionParams) {
     const {CRUDFunction, params} = args;
 
-    let result = null;
+    //connects to the database
+    const client = await MongoClient.connect((process.env.DB_URL as string), {useUnifiedTopology: true});
 
-    MongoClient.connect(uri, {useUnifiedTopology: true}, (err, client) => {
-        if (err) {
-            throw err;
+    const db = client.db();
+
+    //calls the CRUD Function from the params object
+    return CRUDFunction(db, params); //gets the result (if there is one)
+}
+
+export const insertOneWrapper: MongoCRUDFunction = async (db, otherArgs) => {
+    const {collection, data} = otherArgs;
+    try {
+        //the shape of the data variable should be an Object
+        const result = await db.collection(collection).insertOne(data);
+
+        console.log(`Insert Completed successfully: ${result.result.ok}`);
+    } catch (error) {
+        console.log(`An error occurred: ${error}`);
+    }
+}
+
+export const deleteOneWrapper: MongoCRUDFunction = async (db, otherArgs) => {
+    const {collection, data} = otherArgs;
+    try {
+        const result = await db.collection(collection).deleteOne(data);
+
+        console.log(`Delete completed successfully: ${result.result.ok}`);
+    } catch (error) {
+        console.log(`an error occurred: ${error}`)
+    }
+}
+
+export const findOneAndUpdateWrapper: MongoCRUDFunction = async (db, otherArgs ) => {
+    const {collection, filter, data} = otherArgs;
+    try {
+        const result = await db.collection(collection).findOneAndUpdate(filter, data);
+
+        console.log(`update was successful for: ${result.value}`);
+    } catch (error) {
+        console.log(`there was an error: ${error}`);
+    }
+}
+
+export const findOneWrapper: MongoCRUDFunction = async (db,otherArgs) => {
+    const {collection, filter} = otherArgs;
+
+    let result: Object[] = [{}];
+    try {
+        const temp = await db.collection(collection).findOne(filter);
+
+        if (temp) {
+            result = temp;
         }
 
-        const db = client.db();
-
-        result = CRUDFunction(db, params);
-
-        client.close((error) => {
-            console.log(`An error occurred closing the client: ${error}`);
-        });
-    });
+        // console.log(`you've found `)
+        // const util = require('util')
+        // console.log(util.inspect(result, {showHidden: false, depth: null}))
+    } catch (error) {
+        console.log(`error: ${error}`);
+    }
 
     return result;
-}
-
-export const insertOneWrapper: MongoCRUDFunction = (db, otherArgs) => {
-    const {collection, data} = otherArgs;
-
-    db.collection(collection).insertOne(data, (error, res) => {
-        if (!error) {
-            console.log(`Insert Completed successfully: ${res.result.ok}`);
-        } else {
-            console.log(`An error occurred: ${error}`);
-        }
-    });
-}
-export const deleteOneWrapper: MongoCRUDFunction = (db : Db, otherArgs) => {
-    const {collection, data} = otherArgs;
-
-
-    db.collection(collection).deleteOne(data, (error, res)=> {
-       if(!error) {
-           console.log(`Delete completed successfully: ${res.result.ok}`)
-        } else {
-           console.log(`an error occurred: ${error}`)
-       }
-    });
-}
-
-export const updateOneWrapper: MongoCRUDFunction = (db, otherArgs ) => {
-    const {collection, data} = otherArgs;
-
-
-    db.collection(collection).findOneAndUpdate(data, (_id: any, error: MongoError, res:  FindAndModifyWriteOpResultObject<any>) => {
-        if (!error) {
-            console.log(`update was successful for: ${res.value}`)
-        }
-    }).then(r=>{return console.log(data)});
-}
-export const fienOneWrapper: MongoCRUDFunction=(db,otherArgs) => {
-    const {collection, data} = otherArgs;
-
-    db.collection(collection).findOne(data,(error: MongoError, res)=>{
-        if (!error){
-            console.log(`you've found ${res.value.ok}`)
-        }
-        else{
-            console.log(`error: ${error}`)
-        }
-    });
 }
