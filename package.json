@@ -1,0 +1,22 @@
+{
+  "name": "cyoa-story-website",
+  "version": "1.0.0",
+  "description": "A CYOA adventure MERN website",
+  "scripts": {
+    "prod:frontend": "cd Frontend && npm install && npm run build",
+    "prod:backend": "cd Backend && npm install && npm run build",
+    "start": "cd Backend && npm run prod:start",
+    "heroku-postbuild": "npm run prod:frontend && npm run prod:backend"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ChrisPastor/cyoa-story-website.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ChrisPastor/cyoa-story-website/issues"
+  },
+  "homepage": "https://github.com/ChrisPastor/cyoa-story-website#readme"
+}

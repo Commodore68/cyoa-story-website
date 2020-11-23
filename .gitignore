@@ -173,3 +173,5 @@ dist
 
 # local ignores
 build
+
+.DS_Store
