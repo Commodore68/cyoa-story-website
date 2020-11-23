@@ -21,16 +21,15 @@
   },
   "homepage": "https://github.com/ChrisPastor/cyoa-story-website#readme",
   "dependencies": {
-    "@types/mongoose": "^5.7.36",
     "add": "^2.0.6",
-    "axios": "^0.21.0",
+    "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "killport": "^1.0.1",
-    "mongodb": "^3.6.3",
-    "mongoose": "^5.10.11"
+    "mongodb": "^3.6.3"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.8",
     "@types/express": "^4.17.8",
     "@types/mongodb": "^3.5.33",
     "@types/node": "^14.14.7",
