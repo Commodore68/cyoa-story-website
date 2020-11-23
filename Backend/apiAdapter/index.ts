@@ -4,6 +4,6 @@ import {userController} from "../controllers/UserController";
 
 const router = express.Router();
 
-router.use('/', userController)
+router.use('/user', userController)
 
-export {router as userRouter}
+export default router;
