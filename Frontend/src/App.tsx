@@ -7,9 +7,11 @@ import 'primereact/resources/themes/saga-blue/theme.css';
 import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
 import 'primeflex/primeflex.css';
-
+import ProtectedRoute from './auth/protected-route';
 
 import { useAuth0 } from "@auth0/auth0-react";
+import Profile from './pages/UserProfile/Profile';
+import ProfileSettings from './pages/UserProfile/ProfileComponents/ProfileSettings';
 
 
 const Loading = () => (
@@ -61,6 +63,8 @@ const App: React.FunctionComponent = () => {
                 <Route path="/some-other-page">
                     <SomeOtherPage />
                 </Route>
+                <ProtectedRoute path="/Profile" component={Profile}/>
+                <ProtectedRoute path="/ProfileSettings" component={ProfileSettings}/>
                 <Route path="/Login">
                     <Login/>
                 </Route>

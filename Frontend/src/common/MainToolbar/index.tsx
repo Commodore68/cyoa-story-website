@@ -19,7 +19,7 @@ const right = () => (
     <React.Fragment>
         <AuthenticationButton />
         <Button icon="pi pi-home" className="p-mr-2" />
-        <Link to="/Login">
+        <Link to="/Profile">
             <Button icon="pi pi-users" className="p-button-success p-mr-2" />
         </Link>
         <Button icon="pi pi-search" className="p-button-danger" />
