@@ -21,5 +21,5 @@ export function isStory(argument: any): argument is Story {
     return argument.title !== undefined;
 }
 export function isStoryArray(argument: any): argument is Array<Story> {
-    return argument[0] !== undefined;
+    return argument[0].title !== undefined;
 }
