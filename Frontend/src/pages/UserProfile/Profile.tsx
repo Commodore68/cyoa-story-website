@@ -4,7 +4,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { Link } from "react-router-dom";
 import {Button} from 'primereact/button';
 import {findOrCreateAuthorWrapper} from "../../common/utils/requests";
-import {currentAuthorStore} from "~stores";
+import {currentAuthorStore} from "../../stores";
 
 
 const Profile = (): JSX.Element => {

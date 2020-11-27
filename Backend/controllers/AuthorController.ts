@@ -40,17 +40,21 @@ export async function authorController(req: Request, res: Response, next: NextFu
             }
         }
     } else if (type === 'find-many') {
-        //the data here should be a string for the userName the frontend wants to search
-        //todo: this needs to work for partial userNames
+        //the data here should be a single string array for the userName the frontend wants to search
         f = findWrapper;
         params = {
             ...params,
             data: {},
             filter: {
-                userName: {$in: data}
+                userName: {
+                    $in: {
+                        $regex: data[0],
+                        $options: 'i'
+                    }
+                }
             }
         }
-    } else if (type === 'update-one') {
+    } else if (type === 'update-one') { //todo: think about using replace one over update one
         f = updateOneWrapper;
         params = {
             ...params,

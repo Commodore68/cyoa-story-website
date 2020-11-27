@@ -17,9 +17,15 @@ export function isChapter(argument: any): argument is Chapter {
 export function isChapterArray(argument: any): argument is Array<Chapter> {
     return argument[0].heading !== undefined;
 }
+
 export function isStory(argument: any): argument is Story {
     return argument.title !== undefined;
 }
+
 export function isStoryArray(argument: any): argument is Array<Story> {
     return argument[0].title !== undefined;
+}
+
+export function isStringArray(argument: any): argument is Array<string> {
+    return typeof argument[0] === "string";
 }
