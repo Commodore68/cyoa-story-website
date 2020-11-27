@@ -3,7 +3,7 @@ import {Chapter} from "../types/Chapter";
 import {Story} from "../types/Story";
 
 export function isAuthor(argument: any): argument is Author {
-    return argument.firstName !== undefined;
+    return argument.userName !== undefined;
 }
 
 export function isAllAuthorsArray(argument:any) : argument is Array<Author> {
