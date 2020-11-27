@@ -81,16 +81,17 @@ export async function storyController(req: Request, res: Response, next: NextFun
                 }
             }
         } else {
+            //we pass this in as a string array bc it should only be happening from the search page
             //if we want to search stories by genre
             params = {
                 ...params,
                 filter: {
                     $or: [
                         {
-                            genre: genre
+                            genre: genre[0]
                         },
                         {
-                            subGenre: genre
+                            subGenre: genre[0]
                         }
                     ]
                 }
