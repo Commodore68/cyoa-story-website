@@ -22,7 +22,9 @@ const right = () => (
         <Link to="/Profile">
             <Button icon="pi pi-users" className="p-button-success p-mr-2" />
         </Link>
-        <Button icon="pi pi-search" className="p-button-danger" />
+        <Link to="./SearchPage">
+            <Button icon="pi pi-search" className="p-button-danger" />
+        </Link>
     </React.Fragment>
 );
 const MyToolbar: React.FunctionComponent = () => (
