@@ -10,7 +10,7 @@ import {
     MongoManyCRUDParams,
     MongoSingleCRUDParams,
 } from "../database/mongo";
-import {isAllAuthorsArray} from "../utils";
+import {isAuthorArray} from "../utils";
 
 
 export async function userController(req: Request, res: Response, next: NextFunction) {
@@ -44,7 +44,7 @@ export async function userController(req: Request, res: Response, next: NextFunc
         }
     } else if (type === 'find-many') {
         //For this if we are expecting an array of authors from the frontend
-        if (!isAllAuthorsArray(data)) {
+        if (!isAuthorArray(data)) {
             throw new Error('Invalid data in request, Expected GameUser[]')
         } else {
             const _data = data.map((item) => item.id);
@@ -74,7 +74,7 @@ export async function userController(req: Request, res: Response, next: NextFunc
     } else if (type === 'update-many') {
         //this operation should only happen when a game is first created
         //For this if we are expecting an array of GameUsers from the frontend
-        if (!isAllAuthorsArray(data)) {
+        if (!isAuthorArray(data)) {
             throw new Error('Invalid data in request, Expected GameUser[]')
         } else {
             const _data = data.map((item) => item.id);
