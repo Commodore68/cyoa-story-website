@@ -1,6 +1,6 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import { Auth0Provider } from "@auth0/auth0-react"; //todo: AppState type should be usable in a new auth0 release soon
+import { Auth0Provider, AppState } from "@auth0/auth0-react";
 
 interface Props {
     children: React.ReactNode
@@ -12,7 +12,7 @@ const Auth0ProviderWithHistory = ({ children }: Props): JSX.Element => {
 
     const history = useHistory();
 
-    const onRedirectCallback = (appState: { returnTo?: string; }) => { //todo: waiting for new release of the SDK to expose the AppState Type
+    const onRedirectCallback = (appState: AppState) => {
         history.push(appState?.returnTo || window.location.pathname);
     };
 

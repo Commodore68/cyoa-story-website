@@ -1,10 +1,12 @@
 import React from "react";
 
+function updateAuthorInfo() {
+    //todo: finish the request function
+}
 
-
-const ProfileSettings = () => {
+const ProfileSettings = (): JSX.Element => {
     return(
-        <form onSubmit={UpdateUserProfile}>
+        <form onSubmit={updateAuthorInfo}>
             <label><h4>Change Your Username</h4></label>
 
             <input type= "text" itemID= "name" placeholder= "Change username here!"></input>
@@ -18,13 +20,6 @@ const ProfileSettings = () => {
         </form>
     );
 };
-
-const PsItems =[
-    {name: "name"},
-    {name: "Bio"},
-    {name: "email"},
-    {name: "picture"}
-];
 
 
 

@@ -2,6 +2,7 @@
 interface Chapter {
     id: string,
     authorId: string,
+    authorName: string,
     storyId: string,
     parent: string,
     heading: string,

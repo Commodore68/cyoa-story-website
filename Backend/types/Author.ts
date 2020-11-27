@@ -6,6 +6,7 @@ interface Author {
     userName: string,
     picture: string,
     email: string,
+    bio: string,
     storyBookmarks: string[],
     chapterBookmarks: string[],
     createdStories: string[],
