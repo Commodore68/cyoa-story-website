@@ -8,10 +8,10 @@ import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
 import 'primeflex/primeflex.css';
 import ProtectedRoute from './auth/protected-route';
-
 import { useAuth0 } from "@auth0/auth0-react";
 import Profile from './pages/UserProfile/Profile';
 import ProfileSettings from './pages/UserProfile/ProfileComponents/ProfileSettings';
+import SearchPage from './pages/SearchPage/SearchPage';
 
 
 const Loading = () => (
@@ -62,6 +62,9 @@ const App: React.FunctionComponent = () => {
                 </Route>
                 <Route path="/some-other-page">
                     <SomeOtherPage />
+                </Route>
+                <Route path="/SearchPage">
+                    <SearchPage />
                 </Route>
                 <ProtectedRoute path="/Profile" component={Profile}/>
                 <ProtectedRoute path="/ProfileSettings" component={ProfileSettings}/>

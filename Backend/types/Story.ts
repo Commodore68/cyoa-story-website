@@ -1,5 +1,3 @@
-
-
 interface Story {
     id: string,
     authorId: string,
