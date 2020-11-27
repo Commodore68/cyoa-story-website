@@ -4,19 +4,16 @@ import {
     findWrapper,
     insertOneWrapper,
     updateOneWrapper,
-    updateManyWrapper,
     mongoConnectWrapper,
     MongoCRUDFunction,
     MongoManyCRUDParams,
     MongoSingleCRUDParams,
 } from "../database/mongo";
-import {isAuthorArray} from "../utils";
 
 
-export async function userController(req: Request, res: Response, next: NextFunction) {
+export async function authorController(req: Request, res: Response, next: NextFunction) {
     const {
         data,
-        game,
         type
     } = req.body;
 
@@ -43,18 +40,14 @@ export async function userController(req: Request, res: Response, next: NextFunc
             }
         }
     } else if (type === 'find-many') {
-        //For this if we are expecting an array of authors from the frontend
-        if (!isAuthorArray(data)) {
-            throw new Error('Invalid data in request, Expected GameUser[]')
-        } else {
-            const _data = data.map((item) => item.id);
-            f = findWrapper;
-            params = {
-                ...params,
-                data: {},
-                filter: {
-                    id: {$in: _data}
-                }
+        //the data here should be a string for the userName the frontend wants to search
+        //todo: this needs to work for partial userNames
+        f = findWrapper;
+        params = {
+            ...params,
+            data: {},
+            filter: {
+                userName: {$in: data}
             }
         }
     } else if (type === 'update-one') {
@@ -69,29 +62,6 @@ export async function userController(req: Request, res: Response, next: NextFunc
             },
             options: {
                 upsert: true //create a document if no documents matched the search
-            }
-        }
-    } else if (type === 'update-many') {
-        //this operation should only happen when a game is first created
-        //For this if we are expecting an array of GameUsers from the frontend
-        if (!isAuthorArray(data)) {
-            throw new Error('Invalid data in request, Expected GameUser[]')
-        } else {
-            const _data = data.map((item) => item.id);
-            f = updateManyWrapper;
-            params = {
-                ...params,
-                data: {
-                    $push: {
-                        games: {
-                            $each: [game],
-                            $position: 0
-                        }
-                    }
-                },
-                filter: {
-                    id: {$in: _data}
-                }
             }
         }
     } else {

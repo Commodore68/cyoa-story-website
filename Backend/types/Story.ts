@@ -1,6 +1,7 @@
 interface Story {
     id: string,
     authorId: string,
+    authorName: string,
     dateUpdated: Date,
     dateCreated: Date,
     title: string,

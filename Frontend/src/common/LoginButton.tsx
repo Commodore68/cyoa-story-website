@@ -6,7 +6,7 @@ const LoginButton = (): JSX.Element => {
     const { loginWithRedirect } = useAuth0();
     return (
         <Button
-            label="Login"
+            label="Login/Signup"
             className="p-mr-2"
             onClick={() => loginWithRedirect()}
         />
