@@ -14,7 +14,8 @@ const Profile = () => {
 
 
     useEffect(() => {
-        const currentUser: Author={id: user.name,
+        const currentUser: Author={
+            id: user.name,
             isAdmin: false,
             userName: user.nickname,
             picture: user.picture,

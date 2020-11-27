@@ -4,7 +4,7 @@ interface Author {
     id: string,
     isAdmin: boolean,
     userName: string,
-    //picture: string,
+    picture: string,
     email: string,
     storyBookmarks: string[],
     chapterBookmarks: string[],
