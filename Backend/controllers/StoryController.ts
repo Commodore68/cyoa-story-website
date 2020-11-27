@@ -1,18 +1,20 @@
 import {NextFunction, Request, Response} from "express";
 import {
-    findOneWrapper,
+    findOneWrapper, findWrapper,
     insertOneWrapper,
     mongoConnectWrapper,
     MongoCRUDFunction,
     MongoManyCRUDParams,
-    MongoSingleCRUDParams
+    MongoSingleCRUDParams, updateOneWrapper
 } from "../database/mongo";
+import {isStringArray} from "../utils";
 
 
 export async function storyController(req: Request, res: Response, next: NextFunction) {
     const {
         data,
         author,
+        genre,
         type
     } = req.body;
 
@@ -31,12 +33,83 @@ export async function storyController(req: Request, res: Response, next: NextFun
     } else if (type === 'find-one') {
         f = findOneWrapper;
         params = {
-            ...params
+            ...params,
+            filter: {
+                id: data.id
+            }
         };
+    } else if (type === 'find-many') {
+        f = findWrapper;
+
+        if (isStringArray(data)) {
+            //all searches should put the terms to search in a string array, even if there is only one string
+            const searchArray = data.map((item) => {
+                return {
+                    $regex: item,
+                    $options: 'i'
+                }
+            });
+
+            params = {
+                ...params,
+                filter: {
+                    $or: [
+                        {
+                            title: {
+                                $in: searchArray
+                            }
+                        },
+                        {
+                            summary: {
+                                $in: searchArray
+                            }
+                        },
+                        {
+                            tags: {
+                                $in: searchArray
+                            }
+                        }
+                    ]
+                }
+            }
+        } else if (author !== undefined) {
+            //if we want to show all the stories for a single user
+            params = {
+                ...params,
+                filter: {
+                    authorId: author
+                }
+            }
+        } else {
+            //we pass this in as a string array bc it should only be happening from the search page
+            //if we want to search stories by genre
+            params = {
+                ...params,
+                filter: {
+                    $or: [
+                        {
+                            genre: genre[0]
+                        },
+                        {
+                            subGenre: genre[0]
+                        }
+                    ]
+                }
+            }
+        }
+    } else if (type === 'update-one') {
+        f = updateOneWrapper;
+        params = {
+            ...params,
+            data,
+            filter: {
+                id: data.id
+            }
+        }
+    } else {
+        res.sendStatus(400);
+        throw new Error('Invalid type in request');
     }
-
-
-
 
     const result = await mongoConnectWrapper({
         CRUDFunction: f,
@@ -46,7 +119,3 @@ export async function storyController(req: Request, res: Response, next: NextFun
 
     res.status(200).send({data: result});
 }
-
-
-
-

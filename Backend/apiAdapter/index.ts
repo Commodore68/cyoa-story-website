@@ -10,4 +10,4 @@ router.use('/authors', authorController);
 router.use('/chapters', chapterController);
 router.use('/stories', storyController);
 
-export default router;
+module.exports = router;
