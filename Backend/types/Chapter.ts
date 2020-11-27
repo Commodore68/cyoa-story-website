@@ -1,11 +1,10 @@
 
-
 interface Chapter {
     id: string,
     authorId: string,
     storyId: string,
     parent: string,
-    title: string,
+    heading: string,
     content: string,
     previousQuestion: string, // the question from the previous node
     nextQuestion: string, // the question from the end of the current
