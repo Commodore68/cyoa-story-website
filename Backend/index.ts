@@ -25,11 +25,11 @@ app.use('/api', require('./apiAdapter'))
 
 if (process.env.NODE_ENV === 'production') {
     // Serve any static files
-    app.use('/dist', express.static(path.join(__dirname, '..', 'Frontend/dist')));
+    app.use('/dist', express.static(path.join(__dirname, '..', '..', 'Frontend/dist')));
 
     // Handle React routing, return all requests to React app
     app.get('*', function(req, res) {
-        res.sendFile(path.join(__dirname, '..', 'Frontend/dist', 'index.html'));
+        res.sendFile(path.join(__dirname, '..', '..', 'Frontend/dist', 'index.html'));
     });
 }
 
