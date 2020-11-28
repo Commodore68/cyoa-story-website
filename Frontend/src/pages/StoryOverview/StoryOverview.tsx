@@ -1,6 +1,6 @@
 import React from 'react';
 import {storyStore} from "../../stores/index";
-import '../../../src/StoryOverview.scss';
+import './StoryOverview.scss';
 import {Button} from 'primereact/button';
 import { Link } from "react-router-dom";
 
