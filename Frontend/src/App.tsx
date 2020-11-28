@@ -13,7 +13,7 @@ import Profile from './pages/UserProfile/Profile';
 import ProfileSettings from './pages/UserProfile/ProfileComponents/ProfileSettings';
 import SearchPage from './pages/SearchPage/SearchPage';
 import {ProgressSpinner} from "primereact/progressspinner";
-import StoryOverview from './pages/home/StoryOverview';
+import StoryOverview from './pages/StoryOverview/StoryOverview';
 
 const App = (): JSX.Element => {
     const { isLoading } = useAuth0();

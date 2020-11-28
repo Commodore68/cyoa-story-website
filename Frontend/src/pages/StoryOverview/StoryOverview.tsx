@@ -1,7 +1,6 @@
-import {Story} from "../../../../Backend/types/Story";
 import React from 'react';
-import {storyStore} from "../../../src/stores/index";
-import '../../../src/StoryOverview.css';
+import {storyStore} from "../../stores/index";
+import '../../../src/StoryOverview.scss';
 import {Button} from 'primereact/button';
 import { Link } from "react-router-dom";
 
