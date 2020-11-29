@@ -39,6 +39,7 @@ const Profile = (): JSX.Element => {
                     </div>
                     <p className="lead text-muted">{currentAuthorStore.author.email}</p>
                 </div>
+                
             </div>
             <Link to="/ProfileSettings">
                 <Button label="Edit Your Profile" className="p-mr-2" />

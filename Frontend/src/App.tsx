@@ -14,6 +14,7 @@ import ProfileSettings from './pages/UserProfile/ProfileComponents/ProfileSettin
 import SearchPage from './pages/SearchPage/SearchPage';
 import {ProgressSpinner} from "primereact/progressspinner";
 import StoryOverview from './pages/StoryOverview/StoryOverview';
+import ChapterCreation from './pages/ChapterCreation/ChapterCreation';
 
 const App = (): JSX.Element => {
     const { isLoading } = useAuth0();
@@ -37,6 +38,9 @@ const App = (): JSX.Element => {
                 </Route>
                 <Route path="/StoryOverview">
                     <StoryOverview />
+                </Route>
+                <Route path="/ChapterCreation">
+                    <ChapterCreation />
                 </Route>
                 <ProtectedRoute path="/Profile" component={Profile}/>
                 <ProtectedRoute path="/ProfileSettings" component={ProfileSettings}/>
