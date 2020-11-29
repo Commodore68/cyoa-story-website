@@ -13,6 +13,7 @@ import Profile from './pages/UserProfile/Profile';
 import ProfileSettings from './pages/UserProfile/ProfileComponents/ProfileSettings';
 import SearchPage from './pages/SearchPage/SearchPage';
 import {ProgressSpinner} from "primereact/progressspinner";
+import StoryOverview from './pages/StoryOverview/StoryOverview';
 import ChapterReadingPage from './pages/ChapterReadingPage/ChapterReadingPage';
 
 const App = (): JSX.Element => {
@@ -37,6 +38,9 @@ const App = (): JSX.Element => {
                 </Route>
                 <Route path="/SearchPage">
                     <SearchPage />
+                </Route>
+                <Route path="/StoryOverview">
+                    <StoryOverview />
                 </Route>
                 <ProtectedRoute path="/Profile" component={Profile}/>
                 <ProtectedRoute path="/ProfileSettings" component={ProfileSettings}/>
