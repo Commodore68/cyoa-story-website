@@ -9,8 +9,13 @@ const left = () => (
         <Link to="/home">
             <Button icon="pi pi-home" className="p-mr-2" />
         </Link>
+        <Link to = "/ChapterCreation">
+            <Button icon="pi pi-check" className="p-button-success p-mr-2" />
+        </Link>
     </React.Fragment>
 );
+
+
 
 const right = () => (
     <React.Fragment>
