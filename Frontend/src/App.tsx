@@ -14,6 +14,7 @@ import ProfileSettings from './pages/UserProfile/ProfileComponents/ProfileSettin
 import SearchPage from './pages/SearchPage/SearchPage';
 import {ProgressSpinner} from "primereact/progressspinner";
 import StoryOverview from './pages/StoryOverview/StoryOverview';
+import ChapterReadingPage from './pages/ChapterReadingPage/ChapterReadingPage';
 import ChapterCreation from './pages/ChapterCreation/ChapterCreation';
 
 const App = (): JSX.Element => {
@@ -32,6 +33,9 @@ const App = (): JSX.Element => {
                 </Route>
                 <Route path="/home" >
                     <HomePage />
+                </Route>
+                <Route path="/Chapter/:id">
+                    <ChapterReadingPage />
                 </Route>
                 <Route path="/SearchPage">
                     <SearchPage />
