@@ -1,4 +1,7 @@
-
+interface ChildChapter{
+    id: string,
+    heading: string,
+}
 interface Chapter {
     id: string,
     authorId: string,
@@ -9,9 +12,9 @@ interface Chapter {
     content: string,
     previousQuestion: string, // the question from the previous node
     nextQuestion: string, // the question from the end of the current
-    children: string[],
+    children: Array<ChildChapter>,
     dateUpdated: Date,
     dateCreated: Date,
 }
 
-export {Chapter};
+export {Chapter, ChildChapter};
