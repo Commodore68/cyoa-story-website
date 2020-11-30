@@ -8,6 +8,7 @@ import { Editor } from 'primereact/editor';
 
 
 
+
 chapterStore.chapter = {
 
     id:'someID',
@@ -45,46 +46,46 @@ const ChapterCreation = (props:ChapterCreationPageProps):JSX.Element => {
 
 
     
-        return(
-
+    return(
         <div>
-                   <h1>
-                        Create Your Chapter
-                    </h1>
-
-                    
-             
-
-                <form>
-                    <label><h3>Enter Chapter Title</h3></label>
-                    <input type="text" itemID="name" placeholder="Title"></input>
-                                   
-                    
-                    <label><h3>Enter Chapter Content</h3></label> 
-                    <Editor style={{ height: '220px' }} />
-
-                    <label><h3>Enter the Next Question</h3></label>
-                    <input type="textarea" itemID="Quesiton" placeholder="Next Quetion"></input>
-                     <br></br>                   
-                     <p>
-                    <Link to="/StoryCreation">
-                        <Button label="Create Chapter" className="p-mr-2" />
-                    </Link>
-                    </p>
-                </form>
-
-            
-
-
+            <h1 className="p-text-center">
+                Create Your Chapter
+            </h1>
+            <form>
+                <div className="p-d-flex p-ml-6">
+                    <div style={{width:"10%"}} />
+                    <div className="p-flex-column p-ml-1" style={{width:"80%"}}>
+                        <label><h3>Enter Chapter Title</h3></label>
+                        <input type="text" itemID="name" placeholder="Title" className="p-ml-6"></input>        
+                        <label><h3>Enter Chapter Content</h3></label> 
+                    </div>
+                    <div style={{width:"10%"}} />
+                </div>
+                <div className="p-d-flex">
+                    <div style={{width: "15%"}} />
+                    <div className="p-flex-column" style={{width: "70%"}}>
+                        <Editor style={{ height: '400px'}} />
+                    </div>
+                    <div style={{width: "15%"}} />
+                </div>
+                
+                <div className="p-d-flex p-ml-6">
+                    <div style={{width:"10%"}} />
+                    <div className="p-flex-column p-ml-1" style={{width:"80%"}}>
+                        <label><h3>Enter the Next Question</h3></label>
+                        <input type="textarea" itemID="Question" placeholder="Next Question" className="p-ml-6"></input>
+                        <br></br>                   
+                        <p>
+                        <Link to="/StoryCreation">
+                            <Button label="Create Chapter" className="p-mr-2" />
+                        </Link>
+                        </p>
+                    </div>
+                </div>
+            </form>
         </div>
-
-
-
     );
-
-    
-
-    };
+ };
     
 
 export default ChapterCreation;
