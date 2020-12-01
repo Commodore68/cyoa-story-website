@@ -53,26 +53,28 @@ const StoryCreation = observer((): JSX.Element => {
 
     useEffect(() => {
         async function setData() {
-            const response = await httpRequest({
-                method: 'POST',
-                endpoint: '/api/stories/',
-                data: {
-                    data: newStory,
-                    type: 'insert-one'
-                }
-            });
+            if(newStory) {
+                const response = await httpRequest({
+                    method: 'POST',
+                    endpoint: '/api/stories/',
+                    data: {
+                        data: newStory,
+                        type: 'insert-one'
+                    }
+                });
 
-            try {
-                const value = response.data;
-                if (newStory) {
+                try {
+                    const value = response.data;
+
                     storyStore.story = newStory;
-                }
-                setSuccessResponse(true);
 
-                document.getElementById('response').innerText = 'New Story Created';
-            } catch (e) {
-                setSuccessResponse(false);
-                document.getElementById('response').innerText = 'Story Creation failed';
+                    setSuccessResponse(true);
+
+                    document.getElementById('response').innerText = 'New Story Created';
+                } catch (e) {
+                    setSuccessResponse(false);
+                    document.getElementById('response').innerText = 'Story Creation failed';
+                }
             }
         }
         void setData();
