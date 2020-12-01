@@ -11,11 +11,11 @@ import ProtectedRoute from './auth/protected-route';
 import { useAuth0 } from "@auth0/auth0-react";
 import Profile from './pages/UserProfile/Profile';
 import ProfileSettings from './pages/UserProfile/ProfileComponents/ProfileSettings';
-import SearchPage from './pages/SearchPage/SearchPage';
 import {ProgressSpinner} from "primereact/progressspinner";
-import StoryOverview from './pages/StoryOverview/StoryOverview';
+import {StoryOverview} from './pages/StoryOverview/StoryOverview';
 import ChapterReadingPage from './pages/ChapterReadingPage/ChapterReadingPage';
-import ChapterCreation from './pages/ChapterCreation/ChapterCreation';
+import {ChapterCreation} from './pages/ChapterCreation/ChapterCreation';
+import StoryCreation from "./pages/StoryCreation/StoryCreation";
 
 const App = (): JSX.Element => {
     const { isLoading } = useAuth0();
@@ -28,25 +28,13 @@ const App = (): JSX.Element => {
         <React.Fragment>
             <MyToolbar />
             <Switch>
-                <Route exact path="/" >
-                    <HomePage />
-                </Route>
-                <Route path="/home" >
-                    <HomePage />
-                </Route>
-                <Route path="/Chapter/:id">
-                    <ChapterReadingPage />
-                </Route>
-                <Route path="/SearchPage">
-                    <SearchPage />
-                </Route>
-                <Route path="/StoryOverview">
-                    <StoryOverview />
-                </Route>
-                <Route path="/ChapterCreation">
-                    <ChapterCreation />
-                </Route>
-                <ProtectedRoute path="/Profile" component={Profile}/>
+                <Route exact path="/" component={HomePage}/>
+                <Route path="/home" component={HomePage}/>
+                <Route path="/Chapter/:id" component={ChapterReadingPage}/>
+                <Route path="/StoryOverview/:id" component={StoryOverview}/>
+                <ProtectedRoute path={'/StoryCreation'} component={StoryCreation}/>
+                <ProtectedRoute path="/ChapterCreation/:id" component={ChapterCreation}/>
+                <Route path="/Profile/:username" component={Profile}/>
                 <ProtectedRoute path="/ProfileSettings" component={ProfileSettings}/>
             </Switch>
         </React.Fragment>

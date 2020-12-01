@@ -38,7 +38,7 @@ const server = app.listen(process.env.PORT || 3000, () => {
         console.log(`⚡️[server]: Server is running at http://localhost:${(server.address() as AddressInfo).port}`);
     }
     else if (process.env.NODE_ENV === 'production') {
-        console.log(`⚡️[server]: Server is running at https://this has not been created yet:${(server.address() as AddressInfo).port}`);
+        console.log(`⚡️[server]: Server is running at https://the-paths.herokuapp.com:${(server.address() as AddressInfo).port}`);
     }
 });
 

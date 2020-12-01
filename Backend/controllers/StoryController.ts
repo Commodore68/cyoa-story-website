@@ -41,7 +41,15 @@ export async function storyController(req: Request, res: Response, next: NextFun
     } else if (type === 'find-many') {
         f = findWrapper;
 
-        if (isStringArray(data)) {
+        if (author === undefined && data === undefined && genre === undefined) {
+            params = {
+                ...params,
+                filter: {},
+                options: {
+                    //todo: limit the results to 10 and sort by most recent
+                }
+            }
+        } else if (isStringArray(data)) {
             //all searches should put the terms to search in a string array, even if there is only one string
             const searchArray = data.map((item) => {
                 return {

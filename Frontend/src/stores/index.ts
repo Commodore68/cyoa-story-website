@@ -13,7 +13,7 @@ interface chapterStoreType {
     chapter: Chapter
 }
 
-interface currentAuthorStoreType {
+interface authorStoreType {
     _isLoading: boolean,
     author: Author
 }
@@ -32,7 +32,14 @@ const chapterStoreTemp: chapterStoreType = {
     chapter: {}
 };
 
-const currentAuthorStoreTemp: currentAuthorStoreType = {
+const currentAuthorStoreTemp: authorStoreType = {
+    _isLoading: false,
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    author: {}
+};
+
+const viewingAuthorStoreTemp: authorStoreType = {
     _isLoading: false,
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
@@ -44,3 +51,5 @@ export const storyStore = observable(storyStoreTemp);
 export const chapterStore = observable(chapterStoreTemp);
 
 export const currentAuthorStore = observable(currentAuthorStoreTemp);
+
+export const viewingAuthorStore = observable(viewingAuthorStoreTemp); //for the profile page that is being viewed

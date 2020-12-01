@@ -7,7 +7,7 @@ const LogoutButton = (): JSX.Element => {
     return (
         <Button
             label="Log Out"
-            className="p-mr-2"
+            className="p-mr-2 p-button-lg"
             onClick={() =>
                 logout({
                     returnTo: window.location.origin,

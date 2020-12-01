@@ -7,7 +7,7 @@ const LoginButton = (): JSX.Element => {
     return (
         <Button
             label="Login/Signup"
-            className="p-mr-2"
+            className="p-mr-2 p-button-lg"
             onClick={() => loginWithRedirect()}
         />
     );

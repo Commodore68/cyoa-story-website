@@ -88,9 +88,16 @@ export async function chapterController(req: Request, res: Response, next: NextF
         f = updateOneWrapper;
         params = {
             ...params,
-            data,
+            data: {
+                $push: {
+                    children: {
+                        id: data.id,
+                        heading: data.heading
+                    }
+                }
+            },
             filter: {
-                id: data.id
+                id: data.parent
             }
         }
     } else {
