@@ -107,63 +107,64 @@ const StoryCreation = observer((): JSX.Element => {
         <>
             <div className = "creation">
                 <div className = "node">
-                    <div className="p-field p-grid">
-                        <h1>Story Creation Page</h1>
+                <h1 className="p-text-center">Story Creation Page</h1>
                         <br/>
+                    <div className="p-field p-grid p-flex-column" style={{marginLeft:"200px"}}>
+                        
 
                         <h3>Title</h3>
-                        <br/>
-                        <div className="p-field p-col-12 p-md-4">
+                    
+                        <div className="p-field p-col-12 p-md-2">
                             <span className="p-float-label">
-                                <input type="text" id="title" value={title} onChange={(e) => setTitle(e.target.value)} />
+                                <input type="text" id="title" value={title} onChange={(e) => setTitle(e.target.value)} style={{minWidth:"500px", fontSize:"12pt"}}/>
                                 <label htmlFor="text">InputText</label>
                             </span>
                         </div>
                         <h3>Summary</h3>
-                        <br/>
-                        <div className="p-field p-col-12 p-md-4">
+                        
+                        <div className="p-field p-col-12 p-md-2">
                             <span className="p-float-label">
-                                <textarea id="summary" value={summary} onChange={(e) => setSummary(e.target.value)} rows={3} />
+                                <textarea id="summary" value={summary} onChange={(e) => setSummary(e.target.value)} rows={3} style={{minWidth:"500px", minHeight:"200px", fontSize:"12pt"}}/>
                                 <label htmlFor="Summary">Summary</label>
                             </span>
                         </div>
                         {/* tags, gene, sub gen and content rating will be drop down menu view */}
 
-                        <h3>Tags</h3>
-                        <br/>
+                        {/* <h3>Tags</h3>
+                        <br/> */}
 
                         <h3>Genre</h3>
-                        <br/>
-                        <div className="p-field p-col-12 p-md-4">
+                        
+                        <div className="p-field p-col-12 p-md-2">
                             <span className="p-float-label">
-                                <Dropdown id="dropdown" value={genre} options={genreOptions} onChange={(e) => setGenre(e.value.name)} optionLabel="name" />
+                                <Dropdown id="dropdown" value={genre} options={genreOptions} onChange={(e) => setGenre(e.value.name)} optionLabel="name" style={{minWidth:"200px"}}/>
                                 <label htmlFor="Genre">Dropdown</label>
                             </span>
                         </div>
 
                         <h3>Sub-Genre</h3>
-                        <br/>
-                        <div className="p-field p-col-12 p-md-4">
+                        
+                        <div className="p-field p-col-12 p-md-2">
                             <span className="p-float-label">
-                                <Dropdown id="dropdown" value={subGenre} options={subGenreOptions} onChange={(e) => setSubGenre(e.value.name)} optionLabel="name" />
+                                <Dropdown id="dropdown" value={subGenre} options={subGenreOptions} onChange={(e) => setSubGenre(e.value.name)} optionLabel="name" style={{minWidth:"200px"}}/>
                                 <label htmlFor="dropdown">subGenre</label>
                             </span>
                         </div>
 
                         <h3>Content Rating</h3>
-                        <br/>
-                        <div className="p-field p-col-12 p-md-4">
+                        
+                        <div className="p-field p-col-12 p-md-2">
                             <span className="p-float-label">
-                                <Dropdown id="dropdown" value={contentRating} options={contentRatingOptions} onChange={(e) => setContentRating(e.value.name)} optionLabel="name" />
+                                <Dropdown id="dropdown" value={contentRating} options={contentRatingOptions} onChange={(e) => setContentRating(e.value.name)} optionLabel="name" style={{minWidth:"200px"}}/>
                                 <label htmlFor="Content Rating">Content Rating</label>
                             </span>
                         </div>
                     </div>
-                    <p>
+                    <p style={{marginLeft:"200px"}}>
                         <Button
                             id="createStoryButton"
                             label="Create Story"
-                            className="p-mr-2"
+                            className=" p-mb-4"
                             onClick={(e) => addNewStory()}
                         />
                         {successResponse && <Link to={`/ChapterCreation/newStory${storyStore.story.id}`}>
