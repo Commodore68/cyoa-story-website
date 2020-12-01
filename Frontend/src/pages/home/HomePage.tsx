@@ -4,23 +4,47 @@ import {Author} from "../../../../Backend/types/Author";
 import {findOrCreateAuthorWrapper} from "../../common/utils/requests";
 import {useAuth0} from "@auth0/auth0-react";
 import RecentlyUpdated from "./components/RecentlyUpdated";
-import { storyStore } from '../../stores';
 import { httpRequest } from '../../common/utils/axios';
+import { Story } from '../../../../Backend/types/Story';
+import StoryOverview from '~pages/StoryOverview/StoryOverview';
 
-var data = {
-    storyTitle: ["Title1", "Title2", "Title3"],
-    dateUpdated: [new Date(), new Date(), new Date()],
-    author: ["Spongebob Squarepants", "Patrick Star", "Squidward Tentacles"]
-}
 
-interface RecentlyUpdatedProps{
-    params:{
-        id:string
+const recentStoriesSample: Array<Story> = [
+    {
+        id: "blah",
+        authorId: "meh",
+        authorName: "Spooky Joe",
+        dateUpdated: new Date(),
+        dateCreated: new Date(),
+        title: "The Menacing Bro",
+        summary: "He's just doing it to 'em...menacingly.",
+        tags: ["bruh", "bro", "bro-down"],
+        genre: "Horror",
+        subGenre: "Supernatural",
+        contentRating: 'PG',
+        firstNode: "poggers"
+    },
+    {
+        id: "tired",
+        authorId: "dumb",
+        authorName: "Stephen Hawking",
+        dateUpdated: new Date(),
+        dateCreated: new Date(),
+        title: "Hawking Deez Nuts",
+        summary: "Fucking gateem",
+        tags: ["gateem", "u wot", "old memes"],
+        genre: "Comedy",
+        subGenre: "Antiquated",
+        contentRating: 'Mature',
+        firstNode: "uh"
     }
-}
+]
 
-export const HomePage = (props: RecentlyUpdatedProps) => {
+
+export const HomePage = () => {
     const {isAuthenticated, user} = useAuth0();
+
+    const [recentStories, setRecentStories] = useState<Array<Story>>([]);
 
     //this useEffect will only happen on the first page load as there are no values it is dependent on
     useEffect(() => {
@@ -29,15 +53,13 @@ export const HomePage = (props: RecentlyUpdatedProps) => {
                 method: 'POST',
                 endpoint: '/api/stories/',
                 data:{
-                    data:{
-                        id: props.params.id,
-                    },
-                    type: 'find-one'
+                    type: 'find-many'
                 }
             });
-            storyStore.story = response.data;
+            setRecentStories(response.data);
         }
-        void fetchData();
+        //void fetchData();
+        setRecentStories(recentStoriesSample);
         findOrCreateAuthorWrapper({isAuthenticated, user});
     }, []);
 
@@ -51,7 +73,7 @@ export const HomePage = (props: RecentlyUpdatedProps) => {
             <div className="p-m-2" style={{bottom:"0%", position:"fixed", fontSize:"10.5pt"}}>
                 Created by: Only Drew Fleming, no one else
             </div>
-            <RecentlyUpdated stories={storyStore.story} />
+            <RecentlyUpdated recentStories={recentStoriesSample}/>
         </div>
 
     );
