@@ -16,20 +16,25 @@ function RecentlyUpdated(props:RecentlyUpdatedProps): JSX.Element{
 
     const itemTemplate = (recentStory:Story) =>{
         return(
-            <div className="p-d-flex p-flex-column" style={{width: "600px"}}>
-                <div className="">
-                    <Link to={`/StoryOverview/${recentStory.id}`} >
-                        {recentStory.title}
-                    </Link>
-                </div>
-                
-                <div className="p-flex-column" style={{width: "20%"}}>
-                    <Link to={`/Profile/${recentStory.authorName}`} >
-                        {recentStory.authorName}
-                    </Link>
-                </div>
-                <div className="p-flex-column" style={{width:"20%"}}>
-                    {recentStory.dateUpdated.toDateString()}
+            <div className="p-d-flex" style={{width: "600px"}}>
+                <div className="p-flex-column card p-p-2 p-m-2 p-shadow-5" style={{minWidth:"60%"}}>
+                    <div className="">
+                        <Link to={`/StoryOverview/${recentStory.id}`} >
+                            {recentStory.title}
+                        </Link>
+                    </div>
+                    
+                    <div className="">
+                        by:&nbsp;
+                        <Link to={`/Profile/${recentStory.authorName}`} >
+                            {recentStory.authorName}
+                        </Link>
+                    </div>
+                    <div className="">
+                        Last Updated:&nbsp;
+                        {recentStory.dateUpdated.toDateString()}
+                    </div>
+                    <br/>
                 </div>
             </div>
         )
@@ -45,19 +50,6 @@ function RecentlyUpdated(props:RecentlyUpdatedProps): JSX.Element{
                 <div>
                     <DataScroller value={recentStories} itemTemplate={itemTemplate} rows={2} />
                 </div>
-                {/*<div>{recentStories.map((value,index)=>{
-                    return <div key={`key${value.id}`}>
-                        <Link to={`/Story/${value.id}`}>
-                            {value.authorName}
-                        </Link>
-                        </div>
-                })}
-                </div>
-                <div style={{height:"400px", overflow:"scroll"}}>
-                    <div style={{fontSize:"150pt"}}>
-                        something to test
-                    </div>
-                </div> */}
             </div>
             <div style={{width:"5%"}}/>
         </div>
