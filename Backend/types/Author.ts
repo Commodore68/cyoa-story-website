@@ -11,7 +11,7 @@ interface Author {
     chapterBookmarks: string[],
     createdStories: string[],
     createdChapters: string[],
-    dateJoined: Date,
+    dateJoined: string,
 }
 
 export {Author};

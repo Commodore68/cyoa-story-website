@@ -32,7 +32,7 @@ function RecentlyUpdated(props:RecentlyUpdatedProps): JSX.Element{
                     </div>
                     <div className="">
                         Last Updated:&nbsp;
-                        {recentStory.dateUpdated.toDateString()}
+                        {recentStory.dateUpdated}
                     </div>
                     <br/>
                 </div>

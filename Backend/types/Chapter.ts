@@ -13,8 +13,8 @@ interface Chapter {
     previousQuestion: string, // the question from the previous node
     nextQuestion: string, // the question from the end of the current
     children: Array<ChildChapter>,
-    dateUpdated: Date,
-    dateCreated: Date,
+    dateUpdated: string,
+    dateCreated: string,
 }
 
 export {Chapter, ChildChapter};

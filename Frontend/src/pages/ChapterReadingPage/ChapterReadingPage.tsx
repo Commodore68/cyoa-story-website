@@ -66,7 +66,7 @@ const ChapterReadingPage = observer((): JSX.Element => {
                         </Link>
                     </div>
                     <div className="center dates p-m-1" style={{fontSize: "18px"}}>
-                        {"Date Created: " + chapterStore.chapter.dateCreated.toDateString() + ", " + "Last Updated: " + chapterStore.chapter.dateUpdated.toDateString()}
+                        {"Date Created: " + chapterStore.chapter.dateCreated + ", " + "Last Updated: " + chapterStore.chapter.dateUpdated.toDateString()}
                     </div>
                 </div>
                 <div className="p-d-flex p-mb-6">

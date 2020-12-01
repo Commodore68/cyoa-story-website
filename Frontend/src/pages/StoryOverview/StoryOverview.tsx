@@ -59,8 +59,8 @@ export const StoryOverview = observer((): JSX.Element => {
             </div>
             <div className ="sidediv"> 
                 <div className = "center">
-                    Date Created: {storyStore.story.dateCreated.toDateString()} <br/><br/>
-                    Date Updated: {storyStore.story.dateUpdated.toDateString()} <br/><br/>
+                    Date Created: {storyStore.story.dateCreated} <br/><br/>
+                    Date Updated: {storyStore.story.dateUpdated} <br/><br/>
                     Genre: {storyStore.story.genre} <br/><br/>
                     Subgenre: {storyStore.story.subGenre} <br/><br/>
                     Content Rating: {storyStore.story.contentRating} <br/><br/>
