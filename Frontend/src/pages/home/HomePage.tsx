@@ -9,36 +9,36 @@ import { Story } from '../../../../Backend/types/Story';
 import StoryOverview from '~pages/StoryOverview/StoryOverview';
 
 
-const recentStoriesSample: Array<Story> = [
-    {
-        id: "blah",
-        authorId: "meh",
-        authorName: "Spooky Joe",
-        dateUpdated: new Date(),
-        dateCreated: new Date(),
-        title: "The Menacing Bro",
-        summary: "He's just doing it to 'em...menacingly.",
-        tags: ["bruh", "bro", "bro-down"],
-        genre: "Horror",
-        subGenre: "Supernatural",
-        contentRating: 'PG',
-        firstNode: "poggers"
-    },
-    {
-        id: "tired",
-        authorId: "dumb",
-        authorName: "Stephen Hawking",
-        dateUpdated: new Date(),
-        dateCreated: new Date(),
-        title: "Hawking Deez Nuts",
-        summary: "Fucking gateem",
-        tags: ["gateem", "u wot", "old memes"],
-        genre: "Comedy",
-        subGenre: "Antiquated",
-        contentRating: 'Mature',
-        firstNode: "uh"
-    }
-]
+// const recentStoriesSample: Array<Story> = [
+//     {
+//         id: "blah",
+//         authorId: "meh",
+//         authorName: "Spooky Joe",
+//         dateUpdated: new Date(),
+//         dateCreated: new Date(),
+//         title: "The Menacing Bro",
+//         summary: "He's just doing it to 'em...menacingly.",
+//         tags: ["bruh", "bro", "bro-down"],
+//         genre: "Horror",
+//         subGenre: "Supernatural",
+//         contentRating: 'PG',
+//         firstNode: "poggers"
+//     },
+//     {
+//         id: "tired",
+//         authorId: "dumb",
+//         authorName: "Stephen Hawking",
+//         dateUpdated: new Date(),
+//         dateCreated: new Date(),
+//         title: "Hawking Deez Nuts",
+//         summary: "Fucking gateem",
+//         tags: ["gateem", "u wot", "old memes"],
+//         genre: "Comedy",
+//         subGenre: "Antiquated",
+//         contentRating: 'Mature',
+//         firstNode: "uh"
+//     }
+// ]
 
 
 export const HomePage = () => {
@@ -58,7 +58,7 @@ export const HomePage = () => {
             });
             setRecentStories(response.data);
         }
-        //void fetchData();
+        void fetchData();
         setRecentStories(recentStoriesSample);
         findOrCreateAuthorWrapper({isAuthenticated, user});
     }, []);
