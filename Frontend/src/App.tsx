@@ -40,7 +40,7 @@ const App = (): JSX.Element => {
                 <Route path="/SearchPage">
                     <SearchPage />
                 </Route>
-                <Route path="/StoryOverview">
+                <Route path="/StoryOverview/:id">
                     <StoryOverview />
                 </Route>
                 <Route path="/ChapterCreation">

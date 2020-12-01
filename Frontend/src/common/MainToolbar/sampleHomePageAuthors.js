@@ -1,0 +1,38 @@
+
+export const dataSample = { 
+    "data": [
+        {"id": "1000",
+            "Author": "Yiannig",
+            "title": "the Bamboo Man",
+            "Summary": "a bamboo man find love","category": "comedy","quantity": 24},
+        {"id": "1001",
+            "Author": "Chris",
+            "title": "The Darkest Code",
+            "Summary": "a man and his code, what else does he need?","category": "Rom-Com","quantity": 61},
+        {"id": "1002",
+            "Author": "Julie",
+            "title": "clothing Blues",
+            "Summary": "when you win a Billion, what world would you want to create around you?","category": "comedy-fantasy","quantity": 2},
+        {"id": "1003",
+            "Author": "Julie",
+            "title": "the off-hand",
+            "Summary": "You've been dissed in front of all your friends, what do you say? will you risk the possibility of humiliation to get the chance to strike back?","category": "slice of life","quantity": 25},
+        {"id": "1004",
+            "Author": "Manthan",
+            "title": "Short Stack",
+            "Summary": "i call one of my closest friends, named josh, short stack, you should too! ","category": "Sports/slice of life","quantity": 73},
+        {"id": "1005",
+            "Author": "Josh S",
+            "title": "Cthonic god's folly",
+            "Summary": "5e campaign detailing the decisions my players will go through. based on encounters and their dice rolls, these are the chances and choices that come their way.","category": "D&D adventure style *on-going*","quantity": 0},
+        {"id": "1006",
+            "Author": "Adamma",
+            "title": "the world needs change",
+            "Summary": "a story on how the world may have changed if the decisions we made had more thought and better care. help us change the world!","category": "family fun","quantity": 5},
+        {"id": "1007",
+            "Author": "Josh S",
+            "title": "the life of cob. a CornHub adventure",
+            "Summary": "Product Description","category": "C for Corn","quantity": 23}
+    ],
+
+};
