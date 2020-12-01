@@ -13,7 +13,7 @@ export function findOrCreateAuthorWrapper({isAuthenticated, user}: {isAuthentica
             chapterBookmarks: [],
             createdChapters: [],
             createdStories: [],
-            dateJoined: new Date(),
+            dateJoined: new Date().toDateString(),
             email: user.email,
             id: user.sub,
             isAdmin: false,
