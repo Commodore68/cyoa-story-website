@@ -31,7 +31,7 @@ export const StoryOverview = observer((): JSX.Element => {
                     type: 'find-one'
                 }
             });
-            storyStore.story = response.data;
+            storyStore.story = response.data[0];
             storyStore._isLoading = false;
         }
         void fetchData();

@@ -42,7 +42,7 @@ export const ChapterCreation = observer((): JSX.Element => {
                         type: 'find-one'
                     }
                 });
-                storyStore.story = response.data;
+                storyStore.story = response.data[0];
                 storyStore._isLoading = false;
 
                 chapterStore.chapter = {
@@ -73,7 +73,7 @@ export const ChapterCreation = observer((): JSX.Element => {
                         type: 'find-one'
                     }
                 });
-                chapterStore.chapter = response.data;
+                chapterStore.chapter = response.data[0];
                 chapterStore._isLoading = false;
 
                 storyStore._isLoading = true;
@@ -87,7 +87,7 @@ export const ChapterCreation = observer((): JSX.Element => {
                         type: 'find-one'
                     }
                 });
-                storyStore.story = response.data;
+                storyStore.story = response.data[0];
                 storyStore._isLoading = false;
             }
         }
