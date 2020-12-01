@@ -34,7 +34,7 @@ const Profile = observer((): JSX.Element => {
                 }
             });
 
-            viewingAuthorStore.author = response.data;
+            viewingAuthorStore.author = response.data[0];
             viewingAuthorStore._isLoading = false;
 
             const storyResponse = await httpRequest({
@@ -46,7 +46,7 @@ const Profile = observer((): JSX.Element => {
                 }
             });
 
-            setStories(storyResponse.data);
+            setStories(storyResponse.data[0]);
         }
         void fetchData();
     }, []);

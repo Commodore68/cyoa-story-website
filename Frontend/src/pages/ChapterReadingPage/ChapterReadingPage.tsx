@@ -33,7 +33,7 @@ const ChapterReadingPage = observer((): JSX.Element => {
                     type: 'find-one'
                 }
             });
-            chapterStore.chapter = response.data;
+            chapterStore.chapter = response.data[0];
             chapterStore._isLoading = false;
         }
         void fetchData();
