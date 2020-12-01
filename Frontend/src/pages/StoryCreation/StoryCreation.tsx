@@ -116,16 +116,16 @@ const StoryCreation = observer((): JSX.Element => {
                     
                         <div className="p-field p-col-12 p-md-2">
                             <span className="p-float-label">
-                                <input type="text" id="title" value={title} onChange={(e) => setTitle(e.target.value)} style={{minWidth:"500px", fontSize:"12pt"}}/>
-                                <label htmlFor="text">InputText</label>
+                                <input type="text" id="title" value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Input text" style={{minWidth:"500px", fontSize:"12pt"}}/>
+                                {/* <label htmlFor="text">InputText</label> */}
                             </span>
                         </div>
                         <h3>Summary</h3>
                         
                         <div className="p-field p-col-12 p-md-2">
                             <span className="p-float-label">
-                                <textarea id="summary" value={summary} onChange={(e) => setSummary(e.target.value)} rows={3} style={{minWidth:"500px", minHeight:"200px", fontSize:"12pt"}}/>
-                                <label htmlFor="Summary">Summary</label>
+                                <textarea id="summary" value={summary} onChange={(e) => setSummary(e.target.value)} placeholder="Summary" rows={3} style={{minWidth:"500px", minHeight:"200px", fontSize:"12pt"}}/>
+                                {/* <label htmlFor="Summary">Summary</label> */}
                             </span>
                         </div>
                         {/* tags, gene, sub gen and content rating will be drop down menu view */}
@@ -137,8 +137,8 @@ const StoryCreation = observer((): JSX.Element => {
                         
                         <div className="p-field p-col-12 p-md-2">
                             <span className="p-float-label">
-                                <Dropdown id="dropdown" value={genre} options={genreOptions} onChange={(e) => setGenre(e.value.name)} optionLabel="name" style={{minWidth:"200px"}}/>
-                                <label htmlFor="Genre">Dropdown</label>
+                                <Dropdown id="dropdown" value={genre} options={genreOptions} placeholder="Genre" onChange={(e) => setGenre(e.value.name)} optionLabel="name" style={{minWidth:"200px"}}/>
+                                {/* <label htmlFor="Genre">Dropdown</label> */}
                             </span>
                         </div>
 
@@ -146,8 +146,8 @@ const StoryCreation = observer((): JSX.Element => {
                         
                         <div className="p-field p-col-12 p-md-2">
                             <span className="p-float-label">
-                                <Dropdown id="dropdown" value={subGenre} options={subGenreOptions} onChange={(e) => setSubGenre(e.value.name)} optionLabel="name" style={{minWidth:"200px"}}/>
-                                <label htmlFor="dropdown">subGenre</label>
+                                <Dropdown id="dropdown" value={subGenre} options={subGenreOptions} placeholder="Sub Genre" onChange={(e) => setSubGenre(e.value.name)} optionLabel="name" style={{minWidth:"200px"}}/>
+                                {/* <label htmlFor="dropdown">subGenre</label> */}
                             </span>
                         </div>
 
@@ -155,8 +155,8 @@ const StoryCreation = observer((): JSX.Element => {
                         
                         <div className="p-field p-col-12 p-md-2">
                             <span className="p-float-label">
-                                <Dropdown id="dropdown" value={contentRating} options={contentRatingOptions} onChange={(e) => setContentRating(e.value.name)} optionLabel="name" style={{minWidth:"200px"}}/>
-                                <label htmlFor="Content Rating">Content Rating</label>
+                                <Dropdown id="dropdown" value={contentRating} options={contentRatingOptions} placeholder="Content Rating" onChange={(e) => setContentRating(e.value.name)} optionLabel="name" style={{minWidth:"200px"}}/>
+                                {/* <label htmlFor="Content Rating">Content Rating</label> */}
                             </span>
                         </div>
                     </div>
