@@ -63,7 +63,7 @@ export const ChapterCreation = observer((): JSX.Element => {
 
             } else {
                 chapterStore._isLoading = true;
-                const response = await httpRequest({
+                let response = await httpRequest({
                     method: 'POST',
                     endpoint: '/api/chapters/',
                     data: {
@@ -97,48 +97,49 @@ export const ChapterCreation = observer((): JSX.Element => {
 
     useEffect(() => {
         async function setData() {
-            const response = await httpRequest({
-                method: 'POST',
-                endpoint: '/api/chapters/',
-                data: {
-                    data: newChapter,
-                    type: 'insert-one'
-                }
-            });
-
-            let response2;
-            if (newChapter && newChapter.parent !== '') {
-
-                response2 = await httpRequest({
+            if (newChapter) {
+                const response = await httpRequest({
                     method: 'POST',
                     endpoint: '/api/chapters/',
                     data: {
                         data: newChapter,
-                        type: 'update-one'
+                        type: 'insert-one'
                     }
                 });
-            } else if (newChapter && newChapter.parent === '') {
-                storyStore.story.firstNode = newChapter.id;
 
-                response2 = await httpRequest({
-                    method: 'POST',
-                    endpoint: '/api/stories/',
-                    data: {
-                        data: storyStore.story,
-                        type: 'update-one'
-                    }
-                });
-            }
+                let response2;
+                if (newChapter.parent !== '') {
+                    response2 = await httpRequest({
+                        method: 'POST',
+                        endpoint: '/api/chapters/',
+                        data: {
+                            data: newChapter,
+                            type: 'update-one'
+                        }
+                    });
+                } else if (newChapter.parent === '') {
+                    storyStore.story.firstNode = newChapter.id;
 
-            try {
-                const value = response.data;
-                const value2 = response2.data;
-                setSuccessResponse(true);
+                    response2 = await httpRequest({
+                        method: 'POST',
+                        endpoint: '/api/stories/',
+                        data: {
+                            data: storyStore.story,
+                            type: 'replace-one'
+                        }
+                    });
+                }
 
-                document.getElementById('response').innerText = 'New Chapter Created';
-            } catch (e) {
-                setSuccessResponse(false);
-                document.getElementById('response').innerText = 'Chapter Creation failed';
+                try {
+                    const value = response.data;
+                    const value2 = response2.data;
+                    setSuccessResponse(true);
+
+                    document.getElementById('response').innerText = 'New Chapter Created';
+                } catch (e) {
+                    setSuccessResponse(false);
+                    document.getElementById('response').innerText = 'Chapter Creation failed';
+                }
             }
         }
         void setData();

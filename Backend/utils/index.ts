@@ -7,7 +7,7 @@ export function isAuthor(argument: any): argument is Author {
 }
 
 export function isAuthorArray(argument: any): argument is Array<Author> {
-    return argument[0].userName !== undefined;
+    return argument.length > 0 && argument[0].userName !== undefined;
 }
 
 export function isChapter(argument: any): argument is Chapter {
@@ -15,7 +15,7 @@ export function isChapter(argument: any): argument is Chapter {
 }
 
 export function isChapterArray(argument: any): argument is Array<Chapter> {
-    return argument[0].heading !== undefined;
+    return argument.length > 0 && argument[0].heading !== undefined;
 }
 
 export function isStory(argument: any): argument is Story {
@@ -23,9 +23,9 @@ export function isStory(argument: any): argument is Story {
 }
 
 export function isStoryArray(argument: any): argument is Array<Story> {
-    return argument[0].title !== undefined;
+    return argument.length > 0 && argument[0].title !== undefined;
 }
 
 export function isStringArray(argument: any): argument is Array<string> {
-    return typeof argument[0] === "string";
+    return argument.length > 0 && typeof argument[0] === "string";
 }

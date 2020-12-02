@@ -36,6 +36,9 @@ export async function chapterController(req: Request, res: Response, next: NextF
             ...params,
             filter: {
                 id: data.id
+            },
+            options: {
+                projection: {'_id': 0}
             }
         };
     } else if (type === 'find-many') {
@@ -65,6 +68,9 @@ export async function chapterController(req: Request, res: Response, next: NextF
                             }
                         }
                     ]
+                },
+                options: {
+                    '_id': 0
                 }
             }
         } else if (author !== undefined) {
@@ -73,6 +79,9 @@ export async function chapterController(req: Request, res: Response, next: NextF
                 ...params,
                 filter: {
                     authorId: author
+                },
+                options: {
+                    '_id': 0
                 }
             }
         } else {
@@ -81,6 +90,9 @@ export async function chapterController(req: Request, res: Response, next: NextF
                 ...params,
                 filter: {
                     storyId: story
+                },
+                options: {
+                    '_id': 0
                 }
             }
         }
@@ -105,11 +117,12 @@ export async function chapterController(req: Request, res: Response, next: NextF
         throw new Error('Invalid type in request');
     }
 
+    console.log(type, 'Chapter before mongo function')
     const result = await mongoConnectWrapper({
         CRUDFunction: f,
         params
     });
 
-
+    console.log(type, 'Chapter after mongo function')
     res.status(200).send({data: result});
 }
