@@ -9,13 +9,13 @@ import {Link} from "react-router-dom";
 import {currentAuthorStore} from "../stores";
 import {observer} from "mobx-react";
 
-const AuthenticationButton = (): JSX.Element => {
+const AuthenticationButton = observer((): JSX.Element => {
     const { isAuthenticated } = useAuth0();
     const [user, setUser] = useState<string>();
 
     useEffect(() => {
         setUser(currentAuthorStore.author.userName);
-    }, [currentAuthorStore.author])
+    }, [currentAuthorStore.author]);
     const {userName} = currentAuthorStore.author;
 
     return isAuthenticated
@@ -26,6 +26,6 @@ const AuthenticationButton = (): JSX.Element => {
             <LogoutButton />
         </React.Fragment>
         : <LoginButton />;
-};
+});
 
 export default AuthenticationButton;

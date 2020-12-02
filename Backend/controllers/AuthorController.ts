@@ -47,10 +47,7 @@ export async function authorController(req: Request, res: Response, next: NextFu
             data: {},
             filter: {
                 userName: {
-                    $in: {
-                        $regex: data[0],
-                        $options: 'i'
-                    }
+                    $in: data
                 }
             }
         }
