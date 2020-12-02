@@ -19,49 +19,49 @@ const left = () => (
     </React.Fragment>
 );
 
-// const SearchBar = () => {
-//     const [story, setStory] = useState<Story>();
-//     const [stories, setStories] = useState<Array<Story>>();
-//
-//     useEffect(() => {
-//         async function fetchData() {
-//             const response = await httpRequest({
-//                 method: 'POST',
-//                 endpoint: '/api/stories/',
-//                 data: {
-//                     type: 'find-many'
-//                 }
-//             });
-//
-//             setStories(response.data);
-//         }
-//         void fetchData();
-//     }, []);
-//
-//     const onStoryChange = (e: { value: any}) => {
-//         setStory(e.value);
-//     };
-//
-//     const history = useHistory();
-//
-//     useEffect(() => {
-//         if (story) {
-//             history.push(`/StoryOverview/${story.id}`);
-//         }
-//     }, [story]);
-//
-//     return (
-//         <div className="dropdown">
-//             <div>
-//                 <Dropdown value={story} options={stories} onChange={onStoryChange} optionLabel="title" filter showClear filterBy="title" placeholder="Select a story"/>
-//             </div>
-//         </div>
-//     );
-// };
+const SearchBar = () => {
+    const [story, setStory] = useState<Story>();
+    const [stories, setStories] = useState<Array<Story>>();
+
+    useEffect(() => {
+        async function fetchData() {
+            const response = await httpRequest({
+                method: 'POST',
+                endpoint: '/api/stories/',
+                data: {
+                    type: 'find-many'
+                }
+            });
+
+            setStories(response.data);
+        }
+        void fetchData();
+    }, []);
+
+    const onStoryChange = (e: { value: any}) => {
+        setStory(e.value);
+    };
+
+    const history = useHistory();
+
+    useEffect(() => {
+        if (story) {
+            history.push(`/StoryOverview/${story.id}`);
+        }
+    }, [story]);
+
+    return (
+        <div className="dropdown">
+            <div>
+                <Dropdown value={story} options={stories} onChange={onStoryChange} optionLabel="title" filter showClear filterBy="title" placeholder="Select a story"/>
+            </div>
+        </div>
+    );
+};
 
 const right = () => (
     <React.Fragment>
-        {/*<SearchBar/>*/}
+        <SearchBar/>
         <Button icon="pi pi-search" className="p-mr-2 p-button-lg" />
         <AuthenticationButton />
     </React.Fragment>

@@ -46,7 +46,7 @@ const Profile = observer((): JSX.Element => {
                 }
             });
 
-            setStories(storyResponse.data[0]);
+            setStories(storyResponse.data);
         }
         void fetchData();
     }, []);
