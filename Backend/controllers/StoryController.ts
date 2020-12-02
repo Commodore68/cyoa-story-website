@@ -5,7 +5,7 @@ import {
     mongoConnectWrapper,
     MongoCRUDFunction,
     MongoManyCRUDParams,
-    MongoSingleCRUDParams, updateOneWrapper
+    MongoSingleCRUDParams, replaceOneWrapper, updateOneWrapper
 } from "../database/mongo";
 import {isStringArray} from "../utils";
 
@@ -36,6 +36,9 @@ export async function storyController(req: Request, res: Response, next: NextFun
             ...params,
             filter: {
                 id: data.id
+            },
+            options: {
+                projection: {'_id': 0}
             }
         };
     } else if (type === 'find-many') {
@@ -46,7 +49,19 @@ export async function storyController(req: Request, res: Response, next: NextFun
                 ...params,
                 filter: {},
                 options: {
+                    '_id': 0
                     //todo: limit the results to 10 and sort by most recent
+                }
+            }
+        } else if (author !== undefined) {
+            //if we want to show all the stories for a single user
+            params = {
+                ...params,
+                filter: {
+                    authorId: author
+                },
+                options: {
+                    '_id': 0
                 }
             }
         } else if (isStringArray(data)) {
@@ -78,14 +93,9 @@ export async function storyController(req: Request, res: Response, next: NextFun
                             }
                         }
                     ]
-                }
-            }
-        } else if (author !== undefined) {
-            //if we want to show all the stories for a single user
-            params = {
-                ...params,
-                filter: {
-                    authorId: author
+                },
+                options: {
+                    '_id': 0
                 }
             }
         } else {
@@ -102,11 +112,14 @@ export async function storyController(req: Request, res: Response, next: NextFun
                             subGenre: genre[0]
                         }
                     ]
+                },
+                options: {
+                    '_id': 0
                 }
             }
         }
-    } else if (type === 'update-one') {
-        f = updateOneWrapper;
+    } else if (type === 'replace-one') {
+        f = replaceOneWrapper;
         params = {
             ...params,
             data,
@@ -123,7 +136,6 @@ export async function storyController(req: Request, res: Response, next: NextFun
         CRUDFunction: f,
         params
     });
-
 
     res.status(200).send({data: result});
 }

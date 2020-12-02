@@ -36,6 +36,9 @@ export async function chapterController(req: Request, res: Response, next: NextF
             ...params,
             filter: {
                 id: data.id
+            },
+            options: {
+                projection: {'_id': 0}
             }
         };
     } else if (type === 'find-many') {
@@ -65,6 +68,9 @@ export async function chapterController(req: Request, res: Response, next: NextF
                             }
                         }
                     ]
+                },
+                options: {
+                    '_id': 0
                 }
             }
         } else if (author !== undefined) {
@@ -73,6 +79,9 @@ export async function chapterController(req: Request, res: Response, next: NextF
                 ...params,
                 filter: {
                     authorId: author
+                },
+                options: {
+                    '_id': 0
                 }
             }
         } else {
@@ -81,6 +90,9 @@ export async function chapterController(req: Request, res: Response, next: NextF
                 ...params,
                 filter: {
                     storyId: story
+                },
+                options: {
+                    '_id': 0
                 }
             }
         }
@@ -109,7 +121,6 @@ export async function chapterController(req: Request, res: Response, next: NextF
         CRUDFunction: f,
         params
     });
-
 
     res.status(200).send({data: result});
 }

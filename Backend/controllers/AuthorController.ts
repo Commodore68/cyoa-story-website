@@ -37,6 +37,9 @@ export async function authorController(req: Request, res: Response, next: NextFu
             data: {},
             filter: {
                 id: data.id
+            },
+            options: {
+                projection: {'_id': 0}
             }
         }
     } else if (type === 'find-many') {
@@ -49,6 +52,9 @@ export async function authorController(req: Request, res: Response, next: NextFu
                 userName: {
                     $in: data
                 }
+            },
+            options: {
+                '_id': 0
             }
         }
     } else if (type === 'update-one') { //todo: think about using replace one over update one
