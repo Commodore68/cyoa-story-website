@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 
 import LoginButton from "./LoginButton";
 import LogoutButton from "./LogoutButton";
@@ -11,11 +11,16 @@ import {observer} from "mobx-react";
 
 const AuthenticationButton = (): JSX.Element => {
     const { isAuthenticated } = useAuth0();
+    const [user, setUser] = useState<string>();
+
+    useEffect(() => {
+        setUser(currentAuthorStore.author.userName);
+    }, [currentAuthorStore.author])
     const {userName} = currentAuthorStore.author;
 
     return isAuthenticated
         ? <React.Fragment>
-            <Link to={`/Profile/${userName}`}>
+            <Link to={`/Profile/${user}`}>
                 <Button icon="pi pi-users" className="p-button-success p-mr-2 p-button-lg" />
             </Link>
             <LogoutButton />
