@@ -132,12 +132,10 @@ export async function storyController(req: Request, res: Response, next: NextFun
         throw new Error('Invalid type in request');
     }
 
-    console.log(type, 'Story before mongofunction')
     const result = await mongoConnectWrapper({
         CRUDFunction: f,
         params
     });
 
-    console.log(type, 'Story after mongofunction')
     res.status(200).send({data: result});
 }

@@ -117,12 +117,10 @@ export async function chapterController(req: Request, res: Response, next: NextF
         throw new Error('Invalid type in request');
     }
 
-    console.log(type, 'Chapter before mongo function')
     const result = await mongoConnectWrapper({
         CRUDFunction: f,
         params
     });
 
-    console.log(type, 'Chapter after mongo function')
     res.status(200).send({data: result});
 }
